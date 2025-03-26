@@ -191,6 +191,90 @@ Authorization: Bearer <JWT_TOKEN>
 
 ---
 
+### 6. **Captain Login**
+**POST** `/captains/login`
+
+#### Request Body:
+```json
+{
+  "email": "jane.doe@example.com",
+  "password": "securepassword"
+}
+```
+
+#### Response:
+**Status Code:** `200 OK`
+```json
+{
+  "token": "<JWT_TOKEN>",
+  "captain": {
+    "_id": "64f1b2c3d4e5f6a7b8c9d0e2",
+    "fullname": {
+      "firstname": "Jane",
+      "lastname": "Doe"
+    },
+    "email": "jane.doe@example.com"
+    // ...other fields...
+  }
+}
+```
+
+**Error Example:**
+**Status Code:** `401 Unauthorized`
+```json
+{
+  "message": "Invalid email or password"
+}
+```
+
+### 7. **Get Captain Profile**
+**GET** `/captains/profile`
+
+#### Headers:
+```
+Authorization: Bearer <JWT_TOKEN>
+```
+
+#### Response:
+**Status Code:** `200 OK`
+```json
+{
+  "_id": "64f1b2c3d4e5f6a7b8c9d0e2",
+  "fullname": {
+    "firstname": "Jane",
+    "lastname": "Doe"
+  },
+  "email": "jane.doe@example.com"
+  // ...other fields...
+}
+```
+
+**Error Example:**
+**Status Code:** `401 Unauthorized`
+```json
+{
+  "message": "Unauthorized"
+}
+```
+
+### 8. **Captain Logout**
+**POST** `/captains/logout`
+
+#### Headers:
+```
+Authorization: Bearer <JWT_TOKEN>
+```
+
+#### Response:
+**Status Code:** `200 OK`
+```json
+{
+  "message": "Logged out successfully"
+}
+```
+
+---
+
 ## Notes
 - All endpoints requiring authentication use JWT tokens.
 - Tokens are passed via the `Authorization` header or cookies.
