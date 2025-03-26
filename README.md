@@ -132,6 +132,65 @@ Authorization: Bearer <JWT_TOKEN>
 
 ---
 
+### 5. **Register Captain**
+**POST** `/captains/register`
+
+#### Request Body:
+```json
+{
+  "fullname": {
+    "firstname": "Jane",
+    "lastname": "Doe"
+  },
+  "email": "jane.doe@example.com",
+  "password": "securepassword",
+  "vehicle": {
+    "color": "Red",
+    "plate": "ABC123",
+    "capacity": 4,
+    "vehicleType": "car"
+  }
+}
+```
+
+#### Response:
+**Status Code:** `201 Created`
+```json
+{
+  "token": "<JWT_TOKEN>",
+  "captain": {
+    "_id": "64f1b2c3d4e5f6a7b8c9d0e2",
+    "fullname": {
+      "firstname": "Jane",
+      "lastname": "Doe"
+    },
+    "email": "jane.doe@example.com",
+    "vehicle": {
+      "color": "Red",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+**Error Example:**
+**Status Code:** `400 Bad Request`
+```json
+{
+  "errors": [
+    {
+      "msg": "Invalid Email",
+      "param": "email",
+      "location": "body"
+    }
+  ]
+}
+```
+
+---
+
 ## Notes
 - All endpoints requiring authentication use JWT tokens.
 - Tokens are passed via the `Authorization` header or cookies.
