@@ -1,19 +1,34 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { UserDataContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const UserLogin = () => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userData, setUserdata] = useState({});
+
+
+  const { user, setUser } = React.useContext(UserDataContext);
+  const navigate = useNavigate();
   return (
     <div className='p-7 flex h-screen flex-col justify-between'>
       <div>
       <img className='w-14 mb-5' src='https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png' ></img>
-      <form onSubmit={(e) => {
+      <form onSubmit={async(e) => {
         e.preventDefault();
-        setUserdata({ email, password });
+        const userData = { email: email, password: password };
+
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, userData);
+
+        if(response.status === 200) {
+          const data = response.data;
+          setUser(data.user);
+          localStorage.setItem('token', data.token);
+          navigate('/home');
+        }
         setEmail('');
         setPassword('');  }}>
         <h3 className='text-lg font-medium mb-2'>What's your email</h3>
