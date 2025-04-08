@@ -4,10 +4,8 @@ const WaitingForDriver = (props) => {
   return (
     <div>
     <h5 className='p-1 text-center w-[90%] absolute top-0' onClick={()=>{
-          props.setVehiclePanelOpen(false);
-        }}><i onClick={()=>{
-          props.setVehicleFound(false);
-        }} className="text-3xl text-gray-200 ri-arrow-down-wide-line"></i></h5>
+          props.WaitingForDriver(false);
+        }}><i className="text-3xl text-gray-200 ri-arrow-down-wide-line"></i></h5>
         
         <div className='flex items-center justify-between'>
           <img className='h-12' src='https://swyft.pl/wp-content/uploads/2023/05/how-many-people-can-a-uberx-take.jpg'></img>
