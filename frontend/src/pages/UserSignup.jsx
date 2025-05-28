@@ -5,12 +5,12 @@ import { UserDataContext } from '../context/UserContext'
 
 
 const UserSignup = () => {
-  const [firstname, setfirstName] = React.useState('');
+  const [firstname, setFirstName] = React.useState('');
   const [lastname, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
- 
 
+  
   const navigate = useNavigate();
 
 
@@ -31,7 +31,7 @@ const UserSignup = () => {
       navigate('/home');
 
     }
-    setfirstName('');
+    setFirstName('');
     setLastName('');
     setEmail('');
     setPassword('');
@@ -51,7 +51,7 @@ const UserSignup = () => {
           <div className='flex gap-4'>
           <input
             value={firstname}
-            onChange={(e) => setfirstName(e.target.value)}
+            onChange={(e) => setFirstName(e.target.value)}
             className="bg-[#ffffff] mb-7  rounded px-4 py-2 border w-1/2 text-lg placeholder:text-base"
             type="text"
             placeholder="First Name"
